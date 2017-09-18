@@ -19,10 +19,33 @@ export class SearchForm extends React.Component {
     }
 
     render() {
-        return <div>
-            <label>Search wiki </label>
-            <Field name="search" component="input" type="text" placeholder="Type text..." onKeyUp={this.handleOnKeyUp}/>
-            <button onClick={this.props.handleSubmit} disabled={this.props.pristine || this.props.submitting}>
+
+        const styleSearchForm = {
+            padding: '5px'
+        } 
+        const styleInput = {
+          border: '2px solid',
+          margin: '0 5px 0 15px'
+        }
+        const styleButton = {
+          background: 'white',
+          display: 'inline-block',
+          border: '2px solid',
+          boxShadow: '2px 2px',
+          margin: '-2px'
+        }
+
+        return <div style={styleSearchForm}>
+            <label>Wiki search</label>
+            <Field name="search" 
+                component="input" 
+                type="text" 
+                placeholder="Type text..."
+                style={styleInput}  
+                onKeyUp={this.handleOnKeyUp}/>
+            <button onClick={this.props.handleSubmit} 
+                disabled={this.props.pristine || this.props.submitting} 
+                style={styleButton}>
                 Search
             </button>
         </div>

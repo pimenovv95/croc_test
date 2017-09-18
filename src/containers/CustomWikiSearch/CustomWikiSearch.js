@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 
 import {ConnectedSearchForm} from '../../components/SearchForm/SearchForm';
 import {searchWiki} from '../../actions/wikiSearch';
+import ArticlesList from '../../components/SearchForm/ArticlesList'
 
 export class CustomWikiSearch extends React.Component {
     static propTypes = {
@@ -25,16 +26,10 @@ export class CustomWikiSearch extends React.Component {
     render() {
         const items = [];
 
-        items.push(<ConnectedSearchForm form="wikiSearch" onSubmit={this.handleSearchSubmit}/>);
+        items.push(<ConnectedSearchForm key="searchForm" form="wikiSearch" onSubmit={this.handleSearchSubmit}/>);
 
         if (this.props.searchResults) {
-            const pageLinks = _.map(this.props.searchResults, pageDescription =>
-                <a
-                    style={{display: 'block'}}
-                    key={pageDescription.fullurl}
-                    href={pageDescription.fullurl}>{pageDescription.title}
-                </a>);
-            items.push(<div key="searchResults">{pageLinks}</div>);
+            items.push(<ArticlesList key="articlesList" data={this.props.searchResults} />);
         }
 
         return <div>{items}</div>;
